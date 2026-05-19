@@ -1,0 +1,105 @@
+/* Reseteo general */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+/* Fondo de la página */
+body {
+    background-image: url("img/cuadro.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Mantenemos tipografía limpia */
+}
+
+/* Barra de navegación (Encabezado) */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Recuperamos el diseño horizontal y el contenedor estilo 'píldora' */
+header ul {
+    list-style: none;
+    display: flex; /* Esto vuelve a poner las pestañas en horizontal */
+    gap: 15px; /* Separación entre botones */
+    background-color: rgba(255, 255, 255, 0.75); /* Fondo semitransparente */
+    padding: 10px 20px;
+    border-radius: 30px; /* Bordes redondeados */
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Sombra elegante */
+}
+
+/* Estilo individual de los enlaces del menú */
+header ul li a {
+    text-decoration: none;
+    color: #222;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 16px; /* Padding interno equilibrado */
+    border-radius: 20px;
+    display: inline-block; /* Evita que el fondo negro se deforme */
+    transition: all 0.3s ease;
+}
+
+/* Efecto al pasar el mouse por las pestañas */
+header ul li a:hover {
+    color: #fff; 
+    background-color: #333; /* Fondo oscuro simétrico al pasar el cursor */
+}
+
+/* El logo con contenedor estético circular */
+.logo {
+    background-color: rgba(255, 255, 255, 0.75); 
+    border-radius: 50%; 
+    padding: 10px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); 
+    backdrop-filter: blur(5px);
+    object-fit: contain; 
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05); 
+}
+
+/* Contenedor principal de los textos del centro */
+.hero-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 140px);
+}
+
+/* Caja contenedora del medio */
+.container {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 50px 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 750px;
+    width: 90%;
+    backdrop-filter: blur(8px); 
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+}
+
+.container h1 {
+    font-size: 2.5rem;
+    color: #111;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.container p {
+    font-size: 1.2rem;
+    color: #444;
+    line-height: 1.6;
+}
