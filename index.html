@@ -3,30 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">    
     <title>Talento Tech Ecommerce</title>
 </head>
 <body>
 
-    <header>
-        <a href="index.html">
-            <img src="img/logo1.png" alt="logo" class="logo" width="100" height="100">
+    <header class="site-header">
+        <a href="index.html" class="logo-container">
+            <img src="img/logo1.png" alt="Talento Tech Logo" class="logo">
         </a>
-        <nav>
+        <nav class="nav-container">
             <ul id="navbar">
-                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html" class="active">Inicio</a></li>
                 <li><a href="productos.html">Productos</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="carrito.html">Carrito</a></li>
+                <li><a href="carrito.html">Carrito (<span id="cart-count">0</span>)</a></li>
             </ul>
         </nav>
     </header>
-<main class="hero-background">
-    <section class="container">
-        <h1>Bienvenido a Talento Tech Ecommerce</h1>
-        <p>Tu tienda en línea de confianza para productos tecnológicos de alta calidad.</p>
-    </section>
-</main>
+
+    <main class="hero-section">
+        <div class="container hero-card">
+            <h1>Bienvenido a <span class="text-gradient">Talento Tech Ecommerce</span></h1>
+            <p>Tu tienda en línea de confianza para productos tecnológicos de alta calidad.</p>
+            <a href="productos.html" class="btn-primary">Explorar Productos</a>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Talento Tech Ecommerce - Todos los derechos reservados.</p>
+    </footer>
 
 </body>
 </html>

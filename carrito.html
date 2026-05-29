@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">    
+    <title>Tu Carrito - Talento Tech</title>
+</head>
+<body>
+
+    <header class="site-header">
+        <a href="index.html" class="logo-container">
+            <img src="img/logo1.png" alt="Logo" class="logo">
+        </a>
+        <nav class="nav-container">
+            <ul id="navbar">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="carrito.html" class="active">Carrito (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="hero-section">
+        <div class="container cart-card">
+            <h2>Tu <span class="text-gradient">Carrito</span></h2>
+            
+            <div id="cart-items" class="cart-items-list">
+                </div>
+
+            <div class="cart-summary">
+                <h3>Total: $<span id="cart-total">0.00</span></h3>
+                <div class="cart-buttons">
+                    <button id="btn-empty" class="btn-secondary">Vaciar Carrito</button>
+                    <button id="btn-checkout" class="btn-primary">Finalizar Compra</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="cart.js"></script>
+</body>
+</html>

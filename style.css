@@ -1,105 +1,492 @@
-/* Reseteo general */
+/* ==========================================================================
+   1. VARIABLES Y RESETEO GENERAL
+   ========================================================================== */
+:root {
+    --primary-color: #2563eb; /* Azul tech moderno */
+    --primary-hover: #1d4ed8;
+    --text-main: #0f172a;     /* Gris casi negro muy elegante */
+    --text-muted: #475569;
+    --bg-glass: rgba(255, 255, 255, 0.75);
+    --bg-glass-card: rgba(255, 255, 255, 0.85);
+    --blur-effect: blur(12px);
+    --shadow-soft: 0 4px 30px rgba(0, 0, 0, 0.05);
+    --shadow-strong: 0 10px 40px rgba(0, 0, 0, 0.12);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 * { 
     margin: 0; 
     padding: 0; 
     box-sizing: border-box; 
 }
 
-/* Fondo de la página */
+/* ==========================================================================
+   2. ESTRUCTURA BASE
+   ========================================================================== */
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--text-main);
+    
+    /* Fondo de pantalla */
     background-image: url("img/cuadro.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    min-height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Mantenemos tipografía limpia */
 }
 
-/* Barra de navegación (Encabezado) */
-header {
+/* ==========================================================================
+   3. ENCABEZADO Y NAVEGACIÓN (Estilo Píldora)
+   ========================================================================== */
+.site-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
-    position: relative;
-    z-index: 10;
+    padding: 24px 5%;
+    width: 100%;
 }
 
-/* Recuperamos el diseño horizontal y el contenedor estilo 'píldora' */
-header ul {
-    list-style: none;
-    display: flex; /* Esto vuelve a poner las pestañas en horizontal */
-    gap: 15px; /* Separación entre botones */
-    background-color: rgba(255, 255, 255, 0.75); /* Fondo semitransparente */
-    padding: 10px 20px;
-    border-radius: 30px; /* Bordes redondeados */
-    backdrop-filter: blur(5px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Sombra elegante */
+.logo-container {
+    display: flex;
+    align-items: center;
 }
 
-/* Estilo individual de los enlaces del menú */
-header ul li a {
-    text-decoration: none;
-    color: #222;
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 8px 16px; /* Padding interno equilibrado */
-    border-radius: 20px;
-    display: inline-block; /* Evita que el fondo negro se deforme */
-    transition: all 0.3s ease;
-}
-
-/* Efecto al pasar el mouse por las pestañas */
-header ul li a:hover {
-    color: #fff; 
-    background-color: #333; /* Fondo oscuro simétrico al pasar el cursor */
-}
-
-/* El logo con contenedor estético circular */
 .logo {
-    background-color: rgba(255, 255, 255, 0.75); 
+    width: 70px;  
+    height: 70px;
+    background-color: var(--bg-glass); 
     border-radius: 50%; 
-    padding: 10px; 
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); 
-    backdrop-filter: blur(5px);
+    padding: 12px; 
+    box-shadow: var(--shadow-soft); 
+    backdrop-filter: var(--blur-effect);
+    -webkit-backdrop-filter: var(--blur-effect);
     object-fit: contain; 
-    transition: transform 0.3s ease;
+    transition: var(--transition);
 }
 
 .logo:hover {
-    transform: scale(1.05); 
+    transform: scale(1.05) rotate(2deg); 
 }
 
-/* Contenedor principal de los textos del centro */
-.hero-background {
+header ul {
+    list-style: none;
+    display: flex; 
+    gap: 8px; 
+    background-color: var(--bg-glass); 
+    padding: 8px;
+    border-radius: 40px; 
+    backdrop-filter: var(--blur-effect);
+    -webkit-backdrop-filter: var(--blur-effect);
+    box-shadow: var(--shadow-soft); 
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+header ul li a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 10px 20px; 
+    border-radius: 30px;
+    display: inline-block; 
+    transition: var(--transition);
+}
+
+header ul li a:hover, 
+header ul li a.active {
+    color: #fff; 
+    background-color: var(--primary-color); 
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+/* ==========================================================================
+   4. ESTRUCTURA CENTRAL (Para Inicio y Carrito)
+   ========================================================================== */
+.hero-section {
+    flex: 1; 
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: calc(100vh - 140px);
+    padding: 40px 20px;
 }
 
-/* Caja contenedora del medio */
-.container {
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 50px 40px;
-    border-radius: 20px;
+.hero-card, .cart-card {
+    background-color: var(--bg-glass-card);
+    padding: 60px 40px;
+    border-radius: 24px;
     text-align: center;
-    max-width: 750px;
-    width: 90%;
-    backdrop-filter: blur(8px); 
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    max-width: 700px;
+    width: 100%;
+    backdrop-filter: var(--blur-effect); 
+    -webkit-backdrop-filter: var(--blur-effect); 
+    box-shadow: var(--shadow-strong);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: fadeIn 0.8s ease-out;
 }
 
-.container h1 {
-    font-size: 2.5rem;
-    color: #111;
+.hero-card h1 {
+    font-size: 2.8rem;
+    color: var(--text-main);
     margin-bottom: 20px;
-    font-weight: 700;
+    font-weight: 800;
+    line-height: 1.2;
 }
 
-.container p {
-    font-size: 1.2rem;
-    color: #444;
+.text-gradient {
+    background: linear-gradient(135deg, var(--primary-color), #4f46e5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-card p {
+    font-size: 1.15rem;
+    color: var(--text-muted);
     line-height: 1.6;
+    margin-bottom: 35px;
+}
+
+.btn-primary {
+    display: inline-block;
+    text-decoration: none;
+    background-color: var(--text-main);
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* El botón de inicio se oscurece al pasar el mouse */
+.btn-primary:hover {
+    background-color: #020617; /* Gris ultra oscuro */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+ 5. /* ==========================================================================
+   5. SECCIÓN DE PRODUCTOS (Corregido para Centrado Absoluto)
+   ========================================================================== */
+/* ==========================================================================
+   5. SECCIÓN DE PRODUCTOS (Agrupados en bloque único estilo Mercado Libre)
+   ========================================================================== */
+.products-section {
+    flex: 1;
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start;
+    padding: 40px 20px;
+    width: 100%;             
+}
+
+/* El contenedor traslúcido de fondo ahora envuelve el bloque compacto */
+.products-card-wrapper {
+    background-color: var(--bg-glass-card);
+    padding: 40px 30px;
+    border-radius: 24px;
+    backdrop-filter: var(--blur-effect);
+    -webkit-backdrop-filter: var(--blur-effect);
+    box-shadow: var(--shadow-strong);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    max-width: 1150px;       
+    width: 100%;
+    margin: 0 auto;          
+    animation: fadeIn 0.8s ease-out;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    margin-bottom: 35px;
+    font-weight: 800;
+    text-align: center;
+}
+
+/* 🧱 RED DE PRODUCTOS COMPACTA: Sin espacios intermedios (gap: 0) y con bordes ocultos */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0px; /* Pegamos las tarjetas por completo */
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden; /* Corta los bordes rectos de las esquinas del bloque */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); /* Sombra suave para todo el grupo */
+}
+
+/* Tarjetas individuales transformadas en celdas unidas */
+.product-card {
+    background-color: #ffffff; 
+    padding: 24px 20px;
+    border-radius: 0px; /* Sacamos el redondeado individual para que encajen perfectas */
+    
+    /* Sistema de bordes finos integrados para que no se dupliquen entre sí */
+    border: 1px solid #e2e8f0;
+    margin-left: -1px;
+    margin-top: -1px;
+    
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+    position: relative; /* Necesario para que la sombra del hover pise a los vecinos */
+    z-index: 1;
+}
+
+/* Efecto Mercado Libre: Al pasar el mouse, la celda resalta y flota sutilmente con sombra */
+.product-card:hover {
+    transform: scale(1.02); /* Un levísimo zoom en vez de desplazamiento tosco */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    border-color: var(--primary-color); 
+    z-index: 10; /* Se posiciona por encima de las celdas de los costados */
+}
+
+/* Contenedor e imágenes (Unificadas en tamaño) */
+.product-image-container {
+    width: 100%;
+    height: 180px; 
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #f8fafc;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.product-card:hover .product-img {
+    transform: scale(1.05);
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    flex-grow: 1;
+    text-align: left; 
+}
+
+.product-card h3 {
+    font-size: 1.05rem;
+    color: #334155;
+    font-weight: 500;
+    line-height: 1.4;
+    min-height: 2.8rem; 
+}
+
+.product-card .price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 5px 0;
+}
+
+/* Botón Agregar moderno */
+.btn-add {
+    background-color: var(--primary-color); 
+    color: white;
+    border: none;
+    padding: 12px 0;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-align: center;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.btn-add:hover {
+    background-color: #1e40af; /* Se oscurece al pasar el mouse */
+}
+
+/* ==========================================================================
+   9. SECCIÓN DE CONTACTO (Estilo Colorido y Modular)
+   ========================================================================== */
+.contact-card {
+    max-width: 850px !important; /* Más ancho para que entren las dos columnas cómodamente */
+    width: 95%;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Divide el espacio: formulario izquierda, info derecha */
+    gap: 40px;
+    padding: 40px !important;
+    align-items: center;
+}
+
+.contact-column-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-subtitle {
+    font-size: 0.95rem !important;
+    color: var(--text-muted);
+    margin-bottom: 25px !important;
+}
+
+/* Estructura del Formulario */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+/* Inputs con el borde Cyan/Azulizado destacado de la imagen */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 8px;
+    border: 2px solid #0e7490; /* Borde cyan oscuro texturado */
+    background-color: #ffffff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    transition: var(--transition);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+.contact-form textarea {
+    resize: none;
+}
+
+/* 🔥 BOTÓN NARANJA LLAMATIVO (Estilo Mercado Libre Energía) */
+.btn-orange-submit {
+    background: linear-gradient(135deg, #ea580c, #d97706); /* Degradado naranja/ámbar */
+    color: white;
+    border: none;
+    padding: 14px 0;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.2);
+    transition: var(--transition);
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-orange-submit:hover {
+    background: linear-gradient(135deg, #c2410c, #b45309); /* Se oscurece al pasar el mouse */
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(234, 88, 12, 0.35);
+}
+
+/* 🗺️ COLUMNA DERECHA: Gráficos de canales de comunicación */
+.contact-column-info {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.info-graphics-container {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Items individuales flotantes */
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 12px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    font-weight: 600;
+    font-size: 0.95rem;
+    z-index: 2;
+    transition: var(--transition);
+}
+
+.info-item:hover {
+    transform: scale(1.05);
+}
+
+.info-icon {
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: white;
+}
+
+/* Colores específicos para los iconos redondos */
+.item-cyan .info-icon { background-color: #06b6d4; }
+.item-blue .info-icon { background-color: #2563eb; }
+.item-orange .info-icon { background-color: #ea580c; }
+
+/* Desfases horizontales para emular la forma de "S" de la imagen */
+.item-cyan { align-self: flex-start; }
+.item-blue { align-self: flex-end; }
+.item-orange { align-self: flex-start; }
+
+/* Línea punteada que cruza por detrás de los iconos */
+.connection-line {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 100%;
+    height: 80%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   RESPONSIVO PARA EL CONTACTO (Pantallas chicas)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .contact-card {
+        grid-template-columns: 1fr; /* Se transforma en una sola columna en celulares */
+        gap: 30px;
+        padding: 30px 20px !important;
+    }
+    
+    .info-graphics-container {
+        height: 240px;
+    }
+    
+    .connection-line {
+        display: none; /* Ocultamos la línea en móviles para simplificar el espacio */
+    }
 }
