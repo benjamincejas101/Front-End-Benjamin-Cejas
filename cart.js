@@ -124,3 +124,81 @@ function checkout() {
     alert("¡Gracias por tu compra en Talento Tech! Tu pedido está en procesamiento.");
     emptyCart();
 }
+
+// Función para enviar el carrito a Fake Store API
+function enviarCarritoA-API(carritoLocal) {
+    // Transformamos tu estructura del carrito a lo que espera la API
+    const productosAPI = carritoLocal.map(item => ({
+        productId: item.id, // Asegúrate de usar la propiedad correcta de tu objeto
+        quantity: item.cantidad
+    }));
+
+    fetch('https://fakestoreapi.com/carts', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            userId: 5,         // ID de usuario simulado (Fake Store acepta del 1 al 10)
+            date: new Date().toISOString().split('T')[0], // Fecha actual (AAAA-MM-DD)
+            products: productosAPI
+        })
+    })
+    .then(res => res.json())
+    .then(json => {
+        console.log("Respuesta de la API (Carrito guardado simulado):", json);
+        alert("¡Pedido procesado con éxito (Simulado por API)!");
+    })
+    .catch(err => console.error("Error al conectar con la API:", err));
+}
+function actualizarCarritoEnAPI(idCarrito, carritoLocal) {
+    const productosAPI = carritoLocal.map(item => ({
+        productId: item.id,
+        quantity: item.cantidad
+    }));
+
+    fetch(`https://fakestoreapi.com/carts/${idCarrito}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            userId: 3,
+            date: new Date().toISOString().split('T')[0],
+            products: productosAPI
+        })
+    })
+    .then(res => res.json())
+    .then(json => console.log("Carrito actualizado en API:", json));
+}
+async function cargarCarritoDesdeAPI() {
+    try {
+        // Traemos el carrito número 2 de la API de ejemplo
+        const resCart = await fetch('https://fakestoreapi.com/carts/2');
+        const cartData = await resCart.json();
+        
+        const infoCompletaProductos = [];
+
+        // Recorremos los productos que devolvió el carrito para buscar sus nombres, imágenes y precios
+        for (let item of cartData.products) {
+            const resProd = await fetch(`https://fakestoreapi.com/products/${item.productId}`);
+            const prodData = await resProd.json();
+            
+            // Combinamos la info del producto con la cantidad del carrito
+            infoCompletaProductos.push({
+                id: prodData.id,
+                titulo: prodData.title,
+                precio: prodData.price,
+                imagen: prodData.image,
+                cantidad: item.quantity
+            });
+        }
+
+        console.log("Tu carrito listo para renderizar:", infoCompletaProductos);
+        // Aquí llamarías a tu función existente para renderizar el HTML del carrito
+        // renderizarCarrito(infoCompletaProductos);
+
+    } catch (error) {
+        console.error("Error cargando datos iniciales del carrito:", error);
+    }
+}
