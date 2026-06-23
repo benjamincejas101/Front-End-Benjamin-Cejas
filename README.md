@@ -1,5 +1,6 @@
 
-# `<span style="border-bottom: 3px double;">`PRE-ENTREGA - BENJAMIN DARIO CEJAS
+PRE-ENTREGA - BENJAMIN DARIO CEJAS
+==================================
 
 Estuve programando un poco por mi cuenta,
 Luego empecé a programar con la IA,
