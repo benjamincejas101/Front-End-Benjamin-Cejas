@@ -1,7 +1,3 @@
-<script src="../script/carrito.js"></script>
-<script src="../script/productos.js">
-</script><script src="../script/index.js"></script>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,6 +14,11 @@
             <img src="../img/logo1.png" alt="Logo" class="logo">
         </a>
         <nav class="nav-container">
+            <button class="hamburger" id="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </button>
             <ul id="navbar">
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="productos.html">Productos</a></li>
@@ -29,7 +30,6 @@
 
     <main class="hero-section">
         <div class="container contact-card">
-            
             <div class="contact-column-form">
                 <h1 class="text-gradient" style="font-size: 2.2rem; font-weight: 800; margin-bottom: 5px;">Contacto</h1>
                 <p class="contact-subtitle">Escríbenos y te responderemos en la brevedad.</p>
@@ -53,26 +53,21 @@
 
             <div class="contact-column-info">
                 <div class="info-graphics-container">
-                    
                     <div class="info-item item-cyan">
                         <div class="info-icon">✉</div>
                         <span>soporte@tech.com</span>
                     </div>
-                    
                     <div class="info-item item-blue">
                         <div class="info-icon">📞</div>
                         <span>+54 11 1234-5678</span>
                     </div>
-                    
                     <div class="info-item item-orange">
                         <div class="info-icon">📍</div>
                         <span>Buenos Aires, Arg</span>
                     </div>
-
                     <div class="connection-line"></div>
                 </div>
             </div>
-
         </div>
     </main>
 
@@ -80,6 +75,7 @@
         <p>&copy; 2026 Talento Tech Ecommerce - Todos los derechos reservados.</p>
     </footer>
 
+    <script src="../script/index.js"></script>
     <script>
         // Función simple para simular el envío del formulario
         function enviarMensaje(event) {
@@ -97,5 +93,8 @@
             if (contador) contador.textContent = total;
         });
     </script>
+
+    <script src="../script/productos.js"></script>
+    <script src="../script/carrito.js"></script>
 </body>
 </html>

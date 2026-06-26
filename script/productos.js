@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Función para traer TODO el catálogo de la Fake Store API
 function cargarTodosLosProductos() {
-    const contenedor = document.getElementById('contenedor-productos'); // Asegurate de tener este ID en tu productos.html
+    const contenedor = document.getElementById('contenedor-productos'); 
     if (!contenedor) return;
 
-    contenedor.innerHTML = '<p style="text-align:center; width:100%;">Cargando catálogo completo...</p>';
+    contenedor.innerHTML = '<p style="text-align:center; width:100%; color:#fff;">Cargando catálogo completo...</p>';
 
     fetch('https://fakestoreapi.com/products')
         .then(res => res.json())
@@ -17,7 +17,10 @@ function cargarTodosLosProductos() {
 
             productos.forEach(producto => {
                 const tarjeta = document.createElement('div');
-                tarjeta.classList.add('product-card'); // Mismos estilos heredados de tu CSS
+                tarjeta.classList.add('product-card'); 
+
+                // .replace(/'/g, "\\'") evita que las comillas de los títulos rompan el código del botón
+                const tituloSeguro = producto.title.replace(/'/g, "\\'");
 
                 tarjeta.innerHTML = `
                     <div class="product-image-container">
@@ -26,7 +29,7 @@ function cargarTodosLosProductos() {
                     <div class="product-info">
                         <h3>${producto.title}</h3>
                         <p class="price">$${producto.price}</p>
-                        <button onclick="agregarAlCarrito(${producto.id}, '${producto.title.replace(/'/g, "\\'")}', ${producto.price}, '${producto.image}')" class="btn-add">
+                        <button onclick="agregarAlCarrito(${producto.id}, '${tituloSeguro}', ${producto.price}, '${producto.image}')" class="btn-add">
                             Agregar al Carrito
                         </button>
                     </div>
@@ -35,8 +38,8 @@ function cargarTodosLosProductos() {
             });
         })
         .catch(error => {
-            console.error('Error en el catálogo:', error);
-            contenedor.innerHTML = '<p style="text-align:center; width:100%; color:red;">Error al cargar el catálogo.</p>';
+            console.error("Error al conectar con la API:", error);
+            contenedor.innerHTML = `<p style='color: red; text-align: center;'>Error al cargar los productos.</p>`;
         });
 }
 
@@ -48,6 +51,7 @@ window.agregarAlCarrito = function(id, titulo, precio, imagen) {
     if (productoExistente) {
         productoExistente.cantidad += 1;
     } else {
+        // Guardamos las propiedades en español
         carrito.push({ id, titulo, precio, imagen, cantidad: 1 });
     }
 

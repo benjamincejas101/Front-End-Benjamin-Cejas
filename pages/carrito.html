@@ -1,50 +1,11 @@
-<script src="../script/carrito.js"></script>
-<script src="../script/productos.js">
-</script><script src="../script/index.js"></script>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../style.css">    
-    <title>Mi Carrito - Talento Tech</title>
-</head>
-<body>
-
-    <header class="site-header">
-        <a href="../index.html" class="logo-container">
-            <img src="../img/logo1.png" alt="Logo" class="logo">
-        </a>
-        <nav class="nav-container">
-            <ul id="navbar">
-                <li><a href="../index.html">Inicio</a></li>
-                <li><a href="productos.html">Productos</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="carrito.html" class="active">Carrito (<span id="cart-count">0</span>)</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main class="products-section">
-        <div class="products-card-wrapper" style="max-width: 800px; margin: 0 auto;">
-            <h2 class="section-title">Tu <span class="text-gradient">Carrito</span></h2>
+<main class="hero-section">
+        <div class="container hero-card">
+            <h2>Tu Carrito de Compras</h2>
+            <div id="contenedor-carrito"></div> 
             
-            <div id="contenedor-carrito" class="carrito-lista-container">
-                <p style="text-align:center; padding: 20px;">Cargando productos del carrito...</p>
+            <div style="margin-top: 20px; font-size: 1.3rem; font-weight: bold; color: #0f172a;">
+                Total General: $<span id="total-carrito">0.00</span>
             </div>
-
-            <div class="carrito-resumen" style="margin-top: 20px; padding: 20px; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid rgba(255,255,255,0.2);">
-                <div class="total-box">
-                    <span style="font-size: 1.2rem; color: #fff; opacity: 0.8;">Total a pagar:</span>
-                    <h3 style="font-size: 2rem; color: #fff; margin: 5px 0;">$<span id="total-carrito">0.00</span></h3>
-                </div>
-                <button onclick="finalizarCompra()" class="btn-primary" style="background: linear-gradient(135deg, #ff7b00, #ffae00); border: none; padding: 12px 30px; font-weight: bold; border-radius: 8px;">
-                    Finalizar Compra
-                </button>
-            </div>
-
         </div>
     </main>
 
@@ -52,19 +13,7 @@
         <p>&copy; 2026 Talento Tech Ecommerce - Todos los derechos reservados.</p>
     </footer>
 
-    <script src="../carrito.js"></script>
-
-    <script>
-        function finalizarCompra() {
-            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-            if (carrito.length === 0) {
-                alert("Tu carrito está vacío. Agrega productos desde el catálogo.");
-                return;
-            }
-            alert("¡Muchas gracias por tu simulación de compra en Talento Tech! Limpiando carrito...");
-            localStorage.removeItem('carrito');
-            location.reload(); // Recarga la página para mostrar el carrito vacío
-        }
-    </script>
+    <script src="../script/productos.js"></script>
+    <script src="../script/carrito.js"></script>
 </body>
 </html>

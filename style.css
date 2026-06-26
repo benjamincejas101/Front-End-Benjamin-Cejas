@@ -2,9 +2,9 @@
    1. VARIABLES Y RESETEO GENERAL
    ========================================================================== */
 :root {
-    --primary-color: #2563eb; /* Azul tech moderno */
+    --primary-color: #2563eb; 
     --primary-hover: #1d4ed8;
-    --text-main: #0f172a;     /* Gris casi negro muy elegante */
+    --text-main: #0f172a;     
     --text-muted: #475569;
     --bg-glass: rgba(255, 255, 255, 0.75);
     --bg-glass-card: rgba(255, 255, 255, 0.85);
@@ -29,8 +29,6 @@ body {
     min-height: 100vh;
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     color: var(--text-main);
-    
-    /* Fondo de pantalla */
     background-image: url("img/cuadro.jpg");
     background-size: cover;
     background-position: center;
@@ -103,15 +101,17 @@ header ul li a.active {
 }
 
 /* ==========================================================================
-   4. ESTRUCTURA CENTRAL (Para Inicio y Carrito)
+   4. ESTRUCTURA CENTRAL (Hero / Inicio)
    ========================================================================== */
 .hero-section {
-    position: relative; /* Permite que otros elementos se acomoden abajo */
-    min-height: 80vh;   /* Ocupa una buena parte de la pantalla, pero si hay más contenido se estira */
+    position: relative; 
+    min-height: 60vh;   
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px;
 }
+
 .hero-card, .cart-card {
     background-color: var(--bg-glass-card);
     padding: 60px 40px;
@@ -123,7 +123,6 @@ header ul li a.active {
     -webkit-backdrop-filter: var(--blur-effect); 
     box-shadow: var(--shadow-strong);
     border: 1px solid rgba(255, 255, 255, 0.5);
-    animation: fadeIn 0.8s ease-out;
 }
 
 .hero-card h1 {
@@ -133,6 +132,7 @@ header ul li a.active {
     font-weight: 800;
     line-height: 1.2;
 }
+
 .text-gradient {
     background: linear-gradient(135deg, var(--primary-color), #4f46e5);
     background-clip: text;
@@ -161,30 +161,22 @@ header ul li a.active {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* El botón de inicio se oscurece al pasar el mouse */
 .btn-primary:hover {
-    background-color: #020617; /* Gris ultra oscuro */
+    background-color: #020617; 
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* ==========================================================================
- 5. /* ==========================================================================
-   5. SECCIÓN DE PRODUCTOS (Corregido para Centrado Absoluto)
-   ========================================================================== */
-/* ==========================================================================
-   5. SECCIÓN DE PRODUCTOS (Agrupados en bloque único estilo Mercado Libre)
+   5. SECCIÓN DE PRODUCTOS (Garantiza el ancho completo del contenedor)
    ========================================================================== */
 .products-section {
-    flex: 1;
-    display: flex;
-    justify-content: center; 
-    align-items: flex-start;
-    padding: 40px 20px;
     width: 100%;             
+    padding: 40px 5%;
+    display: flex;
+    justify-content: center;
 }
 
-/* El contenedor traslúcido de fondo ahora envuelve el bloque compacto */
 .products-card-wrapper {
     background-color: var(--bg-glass-card);
     padding: 40px 30px;
@@ -193,10 +185,8 @@ header ul li a.active {
     -webkit-backdrop-filter: var(--blur-effect);
     box-shadow: var(--shadow-strong);
     border: 1px solid rgba(255, 255, 255, 0.5);
-    max-width: 1150px;       
+    max-width: 1200px;       
     width: 100%;
-    margin: 0 auto;          
-    animation: fadeIn 0.8s ease-out;
 }
 
 .section-title {
@@ -206,91 +196,67 @@ header ul li a.active {
     text-align: center;
 }
 
-/* 🧱 RED DE PRODUCTOS COMPACTA: Sin espacios intermedios (gap: 0) y con bordes ocultos */
+/* Grilla unificada y corregida */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 0px; /* Pegamos las tarjetas por completo */
+    gap: 20px; /* Cambiado a separación fluida para evitar amontonamientos */
     width: 100%;
-    border-radius: 12px;
-    overflow: hidden; /* Corta los bordes rectos de las esquinas del bloque */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); /* Sombra suave para todo el grupo */
 }
 
-/* Tarjetas individuales transformadas en celdas unidas */
+/* Tarjetas Dinámicas de la API */
 .product-card {
     background-color: #ffffff; 
     padding: 24px 20px;
-    border-radius: 0px; /* Sacamos el redondeado individual para que encajen perfectas */
-    
-    /* Sistema de bordes finos integrados para que no se dupliquen entre sí */
+    border-radius: 12px;
     border: 1px solid #e2e8f0;
-    margin-left: -1px;
-    margin-top: -1px;
-    
     transition: var(--transition);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 15px;
-    position: relative; /* Necesario para que la sombra del hover pise a los vecinos */
-    z-index: 1;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
-/* Efecto Mercado Libre: Al pasar el mouse, la celda resalta y flota sutilmente con sombra */
 .product-card:hover {
-    transform: scale(1.02); /* Un levísimo zoom en vez de desplazamiento tosco */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     border-color: var(--primary-color); 
-    z-index: 10; /* Se posiciona por encima de las celdas de los costados */
 }
 
-/* Contenedor e imágenes (Unificadas en tamaño) */
-.product-image-container {
-    width: 100%;
+/* Control del contenedor de imágenes */
+.product-card img {
+    max-width: 100%;
     height: 180px; 
-    overflow: hidden;
-    border-radius: 8px;
+    object-fit: contain;
+    margin-bottom: 15px;
     background-color: #f8fafc;
-}
-
-.product-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--transition);
-}
-
-.product-card:hover .product-img {
-    transform: scale(1.05);
-}
-
-.product-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 12px;
-    flex-grow: 1;
-    text-align: left; 
+    border-radius: 8px;
+    padding: 10px;
 }
 
 .product-card h3 {
-    font-size: 1.05rem;
-    color: #334155;
-    font-weight: 500;
-    line-height: 1.4;
-    min-height: 2.8rem; 
+    color: #1a1a1a !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 10px !important;
+    min-height: 2.8rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
-.product-card .price {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-main);
-    margin: 5px 0;
+.product-card .price, .product-card .precio {
+    color: #ff7b00 !important;
+    font-size: 1.4rem !important;
+    font-weight: bold !important;
+    margin-bottom: 15px !important;
 }
 
-/* Botón Agregar moderno */
-.btn-add {
+/* Botón Agregar unificado */
+.btn-add, .btn-agregar {
     background-color: var(--primary-color); 
     color: white;
     border: none;
@@ -304,21 +270,22 @@ header ul li a.active {
     width: 100%;
 }
 
-.btn-add:hover {
-    background-color: #1e40af; /* Se oscurece al pasar el mouse */
+.btn-add:hover, .btn-agregar:hover {
+    background-color: #1e40af; 
 }
 
 /* ==========================================================================
-   9. SECCIÓN DE CONTACTO (Estilo Colorido y Modular)
+   6. SECCIÓN DE CONTACTO
    ========================================================================== */
 .contact-card {
-    max-width: 850px !important; /* Más ancho para que entren las dos columnas cómodamente */
+    max-width: 850px;
     width: 95%;
     display: grid;
-    grid-template-columns: 1.2fr 1fr; /* Divide el espacio: formulario izquierda, info derecha */
+    grid-template-columns: 1.2fr 1fr; 
     gap: 40px;
-    padding: 40px !important;
+    padding: 40px;
     align-items: center;
+    margin: 0 auto;
 }
 
 .contact-column-form {
@@ -326,13 +293,6 @@ header ul li a.active {
     flex-direction: column;
 }
 
-.contact-subtitle {
-    font-size: 0.95rem !important;
-    color: var(--text-muted);
-    margin-bottom: 25px !important;
-}
-
-/* Estructura del Formulario */
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -352,13 +312,12 @@ header ul li a.active {
     color: #1e293b;
 }
 
-/* Inputs con el borde Cyan/Azulizado destacado de la imagen */
 .contact-form input,
 .contact-form textarea {
     width: 100%;
     padding: 11px 14px;
     border-radius: 8px;
-    border: 2px solid #0e7490; /* Borde cyan oscuro texturado */
+    border: 2px solid #0e7490; 
     background-color: #ffffff;
     font-family: inherit;
     font-size: 0.95rem;
@@ -366,20 +325,8 @@ header ul li a.active {
     transition: var(--transition);
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
-}
-
-.contact-form textarea {
-    resize: none;
-}
-
-/* 🔥 BOTÓN NARANJA LLAMATIVO (Estilo Mercado Libre Energía) */
 .btn-orange-submit {
-    background: linear-gradient(135deg, #ea580c, #d97706); /* Degradado naranja/ámbar */
+    background: linear-gradient(135deg, #ea580c, #d97706); 
     color: white;
     border: none;
     padding: 14px 0;
@@ -395,21 +342,101 @@ header ul li a.active {
 }
 
 .btn-orange-submit:hover {
-    background: linear-gradient(135deg, #c2410c, #b45309); /* Se oscurece al pasar el mouse */
+    background: linear-gradient(135deg, #c2410c, #b45309); 
     transform: translateY(-1px);
-    box-shadow: 0 6px 15px rgba(234, 88, 12, 0.35);
 }
 
-/* 🗺️ COLUMNA DERECHA: Gráficos de canales de comunicación */
-.contact-column-info {
+/* ==========================================================================
+   7. PIE DE PÁGINA (FOOTER)
+   ========================================================================== */
+.site-footer {
+    margin-top: auto;
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(15, 23, 42, 0.95);
+    color: #fff;
     width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
 }
 
+/* ==========================================================================
+   8. MENÚ HAMBURGUESA (RESPONSIVO)
+   ========================================================================== */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 100;
+}
+
+.hamburger .bar {
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex; 
+    }
+
+    #navbar {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background-color: #1a1a1a;
+        width: 200px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.5);
+        border: 1px solid rgba(255,255,255,0.1);
+        z-index: 99;
+    }
+
+    #navbar.show {
+        display: flex; 
+    }
+
+    #navbar li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .contact-card {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 30px 20px;
+    }
+}/* ==========================================================================
+   CORRECCIÓN COMPLETA PARA CONTACTO (Efecto Cristal y Estructura)
+   ========================================================================== */
+.contact-card {
+    background-color: var(--bg-glass-card);
+    border-radius: 24px;
+    backdrop-filter: var(--blur-effect);
+    -webkit-backdrop-filter: var(--blur-effect);
+    box-shadow: var(--shadow-strong);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin: 40px auto;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.contact-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+}
+
+/* Gráficos informativos de la derecha */
 .info-graphics-container {
     position: relative;
     width: 100%;
@@ -420,7 +447,6 @@ header ul li a.active {
     justify-content: space-between;
 }
 
-/* Items individuales flotantes */
 .info-item {
     display: flex;
     align-items: center;
@@ -431,14 +457,10 @@ header ul li a.active {
     box-shadow: 0 4px 15px rgba(0,0,0,0.06);
     font-weight: 600;
     font-size: 0.95rem;
-    z-index: 2;
     transition: var(--transition);
 }
 
-.info-item:hover {
-    transform: scale(1.05);
-}
-
+.info-item:hover { transform: scale(1.05); }
 .info-icon {
     font-size: 1.3rem;
     display: flex;
@@ -450,127 +472,9 @@ header ul li a.active {
     color: white;
 }
 
-/* Colores específicos para los iconos redondos */
 .item-cyan .info-icon { background-color: #06b6d4; }
 .item-blue .info-icon { background-color: #2563eb; }
 .item-orange .info-icon { background-color: #ea580c; }
-
-/* Desfases horizontales para emular la forma de "S" de la imagen */
 .item-cyan { align-self: flex-start; }
 .item-blue { align-self: flex-end; }
 .item-orange { align-self: flex-start; }
-
-/* Línea punteada que cruza por detrás de los iconos */
-.connection-line {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 100%;
-    height: 80%;
-    z-index: 1;
-    pointer-events: none;
-}
-
-/* ==========================================================================
-   RESPONSIVO PARA EL CONTACTO (Pantallas chicas)
-   ========================================================================== */
-@media (max-width: 768px) {
-    .contact-card {
-        grid-template-columns: 1fr; /* Se transforma en una sola columna en celulares */
-        gap: 30px;
-        padding: 30px 20px !important;
-    }
-    
-    .info-graphics-container {
-        height: 240px;
-    }
-    
-    .connection-line {
-        display: none; /* Ocultamos la línea en móviles para simplificar el espacio */
-    }
-}
-/* ==========================================
-   SECCIÓN DE PRODUCTOS DESTACADOS 
-   ========================================== */
-
-.destacados-section {
-    padding: 4rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.destacados-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: #333; /* Cambialo según tus colores */
-}
-
-/* Grilla contenedora: Organiza las tarjetas en columnas */
-.productos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    padding: 1rem;
-}
-
-/* Tarjeta individual de cada producto */
-.producto-tarjeta {
-    background-color: #fff;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.producto-tarjeta:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-/* Control del tamaño de las imágenes de la API */
-.producto-tarjeta img {
-    max-width: 100%;
-    height: 200px;
-    object-fit: contain; /* Evita que la imagen se deforme */
-    margin-bottom: 1.5rem;
-}
-
-.producto-tarjeta h3 {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    color: #444;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Corta el texto si el título es muy largo */
-    -webkit-box-orient: vertical;
-}
-
-.producto-tarjeta .precio {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #2ecc71; /* Un color verde tecnológico */
-    margin-bottom: 1.5rem;
-}
-
-/* Botón de agregar al carrito */
-.btn-agregar {
-    background-color: #007bff; /* Podés cambiarlo por tu color btn-primary */
-    color: white;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    width: 100%;
-    transition: background-color 0.2s ease;
-}
-
-.btn-agregar:hover {
-    background-color: #0056b3;
-}
